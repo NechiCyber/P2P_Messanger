@@ -117,17 +117,28 @@
     aesKey = null;
     roomSalt = null;
     if (channel) {
-      try { channel.close(); } catch (_) {}
+      try { channel.close(); } catch (_) { }
     }
     if (pc) {
-      try { pc.close(); } catch (_) {}
+      try { pc.close(); } catch (_) { }
     }
     channel = null;
     pc = null;
   }
 
   function makePeer() {
-    closePeer();
+    setChatEnabled(false);
+
+    if (channel) {
+      try { channel.close(); } catch (_) { }
+    }
+
+    if (pc) {
+      try { pc.close(); } catch (_) { }
+    }
+
+    channel = null;
+    pc = null;
     // STUN helps discover public-facing candidates. It does not relay chat messages.
     // Some networks still require TURN or will not permit a direct connection.
     pc = new RTCPeerConnection({
@@ -208,8 +219,8 @@
       throw new Error("Connection data is not valid JSON.");
     }
     if (!data || data.app !== "NechiP2P" || data.version !== 1 ||
-        !data.description || !["offer", "answer"].includes(data.description.type) ||
-        typeof data.description.sdp !== "string" || typeof data.salt !== "string") {
+      !data.description || !["offer", "answer"].includes(data.description.type) ||
+      typeof data.description.sdp !== "string" || typeof data.salt !== "string") {
       throw new Error("This does not look like valid Nechi P2P connection data.");
     }
     return data;
