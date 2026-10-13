@@ -1,0 +1,41 @@
+.title_text {
+  text-align: center;
+  margin-top: 0;
+
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #2d3748;
+}
+
+button {
+  background-color: #1E88E5;
+  /* Button fill color */
+  color: #ffffff;
+  /* Text color */
+  font-size: 16.px;
+  /* Text size */
+  padding: 12px 24px;
+  /* Space inside the button (top/bottom, left/right) */
+  border: none;
+  /* Remove default browser border */
+  border-radius: 4px;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Hand icon on hover */
+  transition: background-color 0.3s ease;
+  /* Smooth hover effect */
+}
+
+h1 {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #2d3748;
+}
+
+.data_text_main_page {
+
+}

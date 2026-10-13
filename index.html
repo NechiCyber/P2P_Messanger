@@ -1,66 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1016">
-  <title>Nechi P2P Messenger</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Server</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <main class="app">
-    <header class="topbar">
-      <div class="brand-mark">N</div>
-      <div>
-        <h1>NECHI <span>P2P</span></h1>
-        <p class="subtitle">peer-to-peer secure chat · prototype</p>
-      </div>
-      <div class="status-wrap"><span id="statusDot" class="dot"></span><span id="statusText">Not connected</span></div>
-    </header>
 
-    <section class="notice">
-      <strong>Prototype, not audited security software.</strong>
-      Messages use WebRTC's encrypted transport plus AES-GCM with a shared passphrase. Exchange the passphrase through a separate trusted channel. The manual offer/answer exchange is not automatically authenticated.
-    </section>
+  <!-- header -->
+  <header>
+    <h1 class="title_text">~ HTTP Server</h1>
+  </header>
 
-    <section class="panel">
-      <h2><span>01</span> Identity & encryption</h2>
-      <label for="passphrase">Shared secret / passphrase</label>
-      <input id="passphrase" type="password" minlength="12" placeholder="Use a long, unique secret (12+ characters)" autocomplete="new-password">
-      <p class="hint">Enter the exact same secret on both devices. Do not send it in the offer/answer text. A longer random passphrase is safer.</p>
-    </section>
+  <hr>
 
-    <section class="panel">
-      <h2><span>02</span> Connect devices</h2>
-      <div class="actions">
-        <button id="createOfferBtn" class="primary">Create room / offer</button>
-        <button id="acceptOfferBtn">Accept incoming offer</button>
+  <!-- main -->
+  <main>
+    
+    <!-- with users -->
+    <section class="user-management">
+      <h2>👤 API Endpoint: <code>/users</code></h2>
+      
+      <!-- new user -->
+      <div class="card create-user-box">
+        <h3 class="data_text_main_page">Add New User</h3>
+        <p>Enter a name or login in database:</p>
+        
+        <form id="createUserForm" onsubmit="event.preventDefault();">
+          <input type="text" placeholder="e.g. John Doe" id="userInput" required>
+          <button type="submit" class="btn-post">Send POST Request</button>
+        </form>
       </div>
 
-      <label for="signalBox">Connection data (offer or answer)</label>
-      <textarea id="signalBox" rows="5" spellcheck="false" placeholder="Create an offer here, or paste the other device's connection data here."></textarea>
-      <div class="actions">
-        <button id="copySignalBtn">Copy connection data</button>
-        <button id="applyAnswerBtn">Apply answer</button>
-        <button id="resetBtn" class="danger">Reset</button>
+      <br>
+
+      <!-- actual list of users -->
+      <div class="card data-viewer-box">
+        <p>Actual list of users:</p>
+        
+        <button class="listUs btn-get">Fetch List of Users (GET)</button>
       </div>
-      <p class="hint">Workflow: A creates an offer and sends it to B. B pastes it, reviews and accepts it, then sends the answer back to A. A pastes the answer and selects “Apply answer”. Use a trusted channel to exchange the shared secret separately.</p>
+
     </section>
 
-    <section class="panel chat-panel">
-      <h2><span>03</span> Encrypted chat</h2>
-      <div id="chatLog" class="chat-log" aria-live="polite">
-        <div class="empty">Messages will appear here after the connection opens.</div>
-      </div>
-      <form id="chatForm" class="chat-form">
-        <input id="messageInput" type="text" maxlength="4000" placeholder="Write a message..." autocomplete="off" disabled>
-        <button id="sendBtn" class="primary" type="submit" disabled>Send</button>
-      </form>
-      <p class="hint">No chat history is saved by this page. Refreshing or closing the tab clears the visible conversation.</p>
-    </section>
+    <br>
+    <hr>
 
-    <footer>NECHI SYSTEMS · WebRTC DataChannel · AES-GCM · v0.1</footer>
   </main>
-  <script src="app.js"></script>
+
+  <!-- foote r-->
+  <footer>
+    <p><small>&copy; 2026 Nechi. All rights reserved. Built with Express.js</small></p>
+  </footer>
+
+  <script src="/script.js"></script>
 </body>
 </html>
